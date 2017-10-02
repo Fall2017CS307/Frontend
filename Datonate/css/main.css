@@ -331,6 +331,34 @@ ul li {
 	margin-top: 30px;
 	margin-bottom: 80px;
 }
+
+#myModal .reset-div {
+  display: none;
+}
+
+.modal-btn a{
+
+    float: left;
+    height: 30px;
+    width: 180px;
+    margin-top: 5px;
+    margin-right: 5px;
+    text-align: center;
+    
+}
+.modal-btn button{
+
+    float: left;
+    height: 30px;
+    width: 180px;
+    margin-top: 5px;
+    margin-right: 5px;
+    text-align: center;
+    
+}
+.clear {
+	clear: both;
+}
 /* ==========================================================================
 	$intro
 ========================================================================== */

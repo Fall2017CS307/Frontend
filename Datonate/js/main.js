@@ -53,4 +53,21 @@ $(document).ready(function() {
 		$('.nav-toggle').toggleClass('close-nav');
 		nav.toggleClass('open');
 	});
+	
+	//Modal
+	$("#myModal .forgot-password").click(function(evt) {
+ 		$("#myModal .login-div").fadeOut(100);
+    	$("#myModal .reset-div").fadeIn(100);
+	});
+
+	$("#myModal .back").click(function(evt) {
+ 		$("#myModal .reset-div").fadeOut(100);
+    	$("#myModal .login-div").fadeIn(100);
+	});
+
+	$("#log-in-btn").click(function(evt) {
+ 		$("#myModal .reset-div").fadeOut(100);
+    	$("#myModal .login-div").fadeIn(100);
+	});
+	
 });
