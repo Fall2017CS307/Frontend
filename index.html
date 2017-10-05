@@ -85,7 +85,7 @@
              </form>
            </div>
            <div class="reset-div">
-            <form role="form" onsubmit="return login('form');">
+            <form id="reset-form" action="">
               <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter email">
@@ -209,19 +209,24 @@ $( document ).ready(function() {
 </script>
 <script>
 $( document ).ready(function() {
-  $("#register-form").submit(function(){
+  console.log("here");
+  $("#register-form").submit(function(evt){
+  evt.preventDefault();
   var emailID = $("#Email").val()
   var pssd = $("#Password").val()
   var fName = $("#FirstName").val()
   var lName = $("#LastName").val()
-  var ph = $("#Phone").val()
+  var ph = $("#phone").val()
   var BaseUrl = "http://467a1d51.ngrok.io"
   var Endpoint = "/api/register"
-
+  console.log("phone" + ph);
   var FinalURL = BaseUrl+Endpoint;
   $.get(FinalURL, { email: emailID, password:pssd,firstname: fName, lastname: lName, phone: ph }).done(function(data){
     if(data['status'] == 200){
       alert("registeration successfull");
+    }
+    else{
+      console.log(data);
     }
   });
 });
@@ -232,3 +237,4 @@ $( document ).ready(function() {
 </script>
 </body>
 </html>
+
