@@ -62,12 +62,20 @@ $(document).ready(function() {
 
 	$("#myModal .back").click(function(evt) {
  		$("#myModal .reset-div").fadeOut(100);
+ 		$("#myModal .registration-div").fadeOut(100);
     	$("#myModal .login-div").fadeIn(100);
 	});
 
 	$("#log-in-btn").click(function(evt) {
  		$("#myModal .reset-div").fadeOut(100);
+ 		$("#myModal .registration-div").fadeOut(100);
     	$("#myModal .login-div").fadeIn(100);
 	});
+
+	$("#myModal .sign-up").click(function(evt) {
+ 		$("#myModal .login-div").fadeOut(100);
+    	$("#myModal .registration-div").fadeIn(100);
+	});
+
 	
 });

@@ -336,6 +336,10 @@ ul li {
   display: none;
 }
 
+#myModal .registration-div {
+  display: none;
+}
+
 .modal-btn a{
 
     float: left;
