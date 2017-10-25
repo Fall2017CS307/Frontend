@@ -68,9 +68,18 @@
                     </div>
                     <div class="form-group">
                         <label for="dataset-type">Choose type of Dataset</label>
-                        <select class="form-control" id="dataset-type">
-                            <option>Text</option>
-                            <option>Image</option>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" id="text" onclick="textimagecheck()">Text
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" id="image" onclick="textimagecheck()">Image
+                        </label>
+                    </div>
+                    <div class="form-group" id="ifImage" style="display: none;">
+                        <label for="num-selections">Choose Number of selections</label>
+                        <select class="form-control" id="num-selections">
+                            <option >1</option>
+                            <option>Multiple</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -85,7 +94,14 @@
 
     </div>
     <!-- /#wrapper -->
-
+    <script>
+        function textimagecheck(){
+            if (document.getElementById('image').checked) {
+                document.getElementById('ifImage').style.display = 'block';
+            }
+            else document.getElementById('ifImage').style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>
