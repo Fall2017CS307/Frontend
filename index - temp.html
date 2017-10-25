@@ -1,0 +1,261 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Datonate</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="css/jquery.fancybox.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/font-icon.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap-social.css">
+</head>
+</head>
+
+<body>
+  <!-- header section -->
+  <section class="banner" role="banner">
+    <header id="header">
+      <div class="header-content clearfix"> <a class="logo" href="index.html">DATONATE</a>
+        <nav class="navigation" role="navigation">
+          <ul class="primary-nav">
+            <li><a href="#intro">About</a></li>
+            <li><a href="#teams">Our Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a href="#" class="nav-toggle">Menu<span></span></a>
+      </div>
+    </header>
+    <div class="container">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="banner-text text-center">
+          <h1>Annotating Data is now simpler than ever.</h1>
+          <p>Datanote is a tool for mobile users that will give them the ability to perform data annotation tasks in exchange for small amounts of money. The data would be provided by researchers for their personal research purposes</p>
+          <!-- Log in button -->
+          <a href="#" id = "log-in-btn"class="btn btn-large" data-toggle="modal" data-target="#myModal">Log in</a>
+        </div>
+      </div>
+    </div> 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title login-div">Log in into your account.</h4>
+            <h4 class="modal-title reset-div">Reset Password</h4>
+            <h4 class="modal-title registration-div">Create an account</h4>
+          </div>
+          <div class="modal-body">
+            <div class="login-div">  
+              <form role="form" id="form-login" action="#">
+                <div class="form-group">
+                  <input type="email" class="form-control" id="email-login" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="pwd-login" placeholder="Enter password">
+                </div>
+                <div class="modal-btn">
+                  <button type="submit" id="submit-login" class="btn btn-primary">Log In</button>
+                  <a class="btn btn-block btn-social btn-facebook">
+                    <span class="fa fa-facebook"></span> Facebook
+                  </a>
+                  <a class="btn btn-block btn-social btn-google">
+                   <span class="fa fa-google"></span> Google
+                 </a>
+                 <div id="LoginFail" style="color: red;"></div>
+                 <div class="clear"></div>
+               </div>  
+               <a href="#" class="sign-up">Don't have an account? Sign Up!</a>
+               <br>
+               <a href="#" class="forgot-password">Forgot Password?</a>
+               <br>
+             </form>
+           </div>
+           <div class="reset-div">
+            <form id="reset-form" action="">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+              </div>
+              <button type="submit" class="btn btn-primary" style="padding: 10px 30px;">Submit</button>
+              <div id="LoginFail" style="color: red;"></div>
+            </form>
+          </div>
+          <div class="registration-div">
+            <form id="register-form" action="">
+              <div class="form-group row">
+
+              </div>
+              <div class="form-group row">
+               <label for="FirstName" class="col-sm-2 form-control-label">First Name</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="FirstName" name="firstname" placeholder="Jane">
+               </div>
+             </div>
+             <div class="form-group row">
+               <label for="LastName" class="col-sm-2 form-control-label">Last Name</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="LastName" name="lastname" placeholder="Doe">
+               </div>
+             </div>
+             <div class="form-group row">
+               <label for="phone" class="col-sm-2 form-control-label">Phone Number</label>
+               <div class="col-sm-10">
+
+                 <input type="number" min=1000000000 max=9999999999 class="form-control" id="phone" name="phone" placeholder="7651237890">
+               </div>
+               <label class="col-sm-2 form-control-label" id="CheckPUID"></label>
+             </div>
+             <div class="form-group row">
+              <label for="Email" class="col-sm-2 form-control-label">Purdue Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="Email" name="email" placeholder="Email">
+              </div>
+              <label class="col-sm-2 form-control-label" id="CheckEmail"></label>
+            </div>
+            <div class="form-group row">
+              <label for="Password" class="col-sm-2 form-control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="Password" name="password" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Passwordconfirm" class="col-sm-2 form-control-label">Confirm Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="Passwordconfirm" name="passwordconfirm" placeholder="Confirm Password">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="padding: 10px 30px;">Submit</button>
+          </form>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default login-div" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default reset-div back">Back</button>
+        <button type="button" class="btn btn-default registration-div back">Back</button>
+      </div>
+    </div> 
+  </div>
+</div>
+<!-- Modal -->
+</section>
+<!-- header section --> 
+<!-- intro section -->
+<section id="intro" class="section intro">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <h3>We've got what you need!</h3>
+      <p>The days of going through the tenuous process of unravelling external links for freelance tasks are over. Now, freelancers can perform basic data annotation tasks on the interface provided by our app itself. Our system will enable a much more smooth experience for both the participant and the researcher. This is because the participant benefits from having a single interface, the researcher can simply upload the data to our database, thus, he/she doesn’t have to worry about hosting data and maintaining links to it.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- intro section --> 
+
+<!-- work section -->
+
+<!-- work section --> 
+<!-- our team section -->
+<!-- our team section --> 
+<!-- Testimonials section -->
+<!-- Testimonials section --> 
+
+<!-- contact section -->
+<!-- contact section --> 
+<!-- Footer section -->
+<!-- Footer section --> 
+<!-- JS FILES --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.flexslider-min.js"></script> 
+<script src="js/jquery.fancybox.pack.js"></script> 
+<script src="js/retina.min.js"></script> 
+<script src="js/modernizr.js"></script> 
+<script src="js/main.js"></script> 
+<script type="text/javascript" src="js/jquery.contact.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $("#form-login").submit(function(){
+  var emailID = $("#email-login").val()
+  var pwd = $("#pwd-login").val()
+  var baseUrl = "http://467a1d51.ngrok.io"
+  var endpoint = "/api/login"
+
+  var finalURL = baseUrl+endpoint
+  $.get(finalURL, { email: emailID, password:pwd }).done(function(data){
+    if(data['status'] == 200){
+      alert("login successfull");
+    }
+  });
+});
+
+});
+
+
+</script>
+<script>
+$( document ).ready(function() {
+  console.log("here");
+  $("#register-form").submit(function(evt){
+  evt.preventDefault();
+  var emailID = $("#Email").val()
+  var pssd = $("#Password").val()
+  var fName = $("#FirstName").val()
+  var lName = $("#LastName").val()
+  var ph = $("#phone").val()
+  var BaseUrl = "http://467a1d51.ngrok.io"
+  var Endpoint = "/api/register"
+  console.log("phone" + ph);
+  var FinalURL = BaseUrl+Endpoint;
+  $.get(FinalURL, { email: emailID, password:pssd,firstname: fName, lastname: lName, phone: ph }).done(function(data){
+    if(data['status'] == 200){
+      alert("registeration successfull");
+    }
+    else{
+      console.log(data);
+    }
+  });
+});
+
+});
+
+
+</script>
+//<div id="fb-root"></div>
+//<script>
+  // (function(d, s, id) {
+  //   var js, fjs = d.getElementsByTagName(s)[0];
+  //   if (d.getElementById(id)) {
+  //     return;
+ //    }
+ //    js = d.createElement(s); js.id = id;
+ //    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=APP_ID";
+ //    fjs.parentNode.insertBefore(js, fjs);
+//   } (document, 'script', 'facebook-jssdk'));
+//</script>
+//<script>
+//function onSignIn(googleUser) {
+  //var profile = googleUser.getBasicProfile();
+  //console.log('ID: ' + profile.getId()); 
+  //console.log('Name: ' + profile.getName());
+ // console.log('Image URL: ' + profile.getImageUrl());
+  //console.log('Email: ' + profile.getEmail()); 
+//}
+//</script>
+</body>
+</html>
+
