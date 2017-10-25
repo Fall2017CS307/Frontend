@@ -85,13 +85,13 @@
              </form>
            </div>
            <div class="reset-div">
-            <form id="reset-form" action="">
+            <form id="form-reset" action="#">
               <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                <input type="email" class="form-control" id="email-reset" placeholder="Enter email">
               </div>
               <button type="submit" class="btn btn-primary" style="padding: 10px 30px;">Submit</button>
-              <div id="LoginFail" style="color: red;"></div>
+              <div id="ResetFail" style="color: red;"></div>
             </form>
           </div>
           <div class="registration-div">
@@ -188,52 +188,66 @@
 <script type="text/javascript" src="js/jquery.contact.js"></script>
 
 <script>
-$( document ).ready(function() {
-  $("#form-login").submit(function(){
-  var emailID = $("#email-login").val()
-  var pwd = $("#pwd-login").val()
-  var baseUrl = "http://467a1d51.ngrok.io"
-  var endpoint = "/api/login"
+  $( document ).ready(function() {
+    $("#form-login").submit(function(){
+      var emailID = $("#email-login").val()
+      var pwd = $("#pwd-login").val()
+      var baseUrl = "http://467a1d51.ngrok.io"
+      var endpoint = "/api/login"
 
-  var finalURL = baseUrl+endpoint
-  $.get(finalURL, { email: emailID, password:pwd }).done(function(data){
-    if(data['status'] == 200){
-      alert("login successfull");
-    }
+      var finalURL = baseUrl+endpoint
+      $.get(finalURL, { email: emailID, password:pwd }).done(function(data){
+        if(data['status'] == 200){
+          alert("login successfull");
+        }
+      });
+    });
+
   });
-});
+</script>
 
-});
+<script>
+  $( document ).ready(function() {
+    console.log("here");
+    $("#register-form").submit(function(evt){
+      evt.preventDefault();
+      var emailID = $("#Email").val()
+      var pssd = $("#Password").val()
+      var fName = $("#FirstName").val()
+      var lName = $("#LastName").val()
+      var ph = $("#phone").val()
+      var BaseUrl = "http://65db2b5d.ngrok.io"
+      var Endpoint = "/api/register"
+      console.log("phone" + ph);
+      var FinalURL = BaseUrl+Endpoint;
+      $.get(FinalURL, { email: emailID, password:pssd,firstname: fName, lastname: lName, phone: ph }).done(function(data){
+        if(data['status'] == 200){
+          alert("registeration successfull");
+        }
+        else{
+          console.log(data);
+        }
+      });
+    });
 
-
+  });
 </script>
 <script>
-$( document ).ready(function() {
-  console.log("here");
-  $("#register-form").submit(function(evt){
-  evt.preventDefault();
-  var emailID = $("#Email").val()
-  var pssd = $("#Password").val()
-  var fName = $("#FirstName").val()
-  var lName = $("#LastName").val()
-  var ph = $("#phone").val()
-  var BaseUrl = "http://467a1d51.ngrok.io"
-  var Endpoint = "/api/register"
-  console.log("phone" + ph);
-  var FinalURL = BaseUrl+Endpoint;
-  $.get(FinalURL, { email: emailID, password:pssd,firstname: fName, lastname: lName, phone: ph }).done(function(data){
-    if(data['status'] == 200){
-      alert("registeration successfull");
-    }
-    else{
-      console.log(data);
-    }
+  $( document ).ready(function() {
+    $("#form-reset").submit(function(){
+      var emailID = $("#email-reset").val()
+      var baseUrl = "http://65db2b5d.ngrok.io"
+      var endpoint = "/api/reset"
+
+      var finalURL = baseUrl+endpoint
+      $.get(finalURL, { email: emailID}).done(function(data){
+        if(data['status'] == 200){
+          alert("reset successfull");
+        }
+      });
+    });
+
   });
-});
-
-});
-
-
 </script>
 </body>
 </html>

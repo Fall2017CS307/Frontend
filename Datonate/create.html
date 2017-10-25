@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Create Experiments</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="dashboard.html">
+                        Welcome Admin!
+                    </a>
+                </li>
+                <li>
+                    <a href="upload.html">Upload Datasets</a>
+                </li>
+                <li>
+                    <a href="viewdataset.html">View Datasets</a>
+                </li>
+                <li>
+                    <a href="create.html">Create Experiments</a>
+                </li>
+                <li>
+                    <a href="viewexp.html">View Experiments</a>
+                </li>
+                <li>
+                    <a href="settings.html">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1>Create Experiments</h1>
+                <form>
+                    <div class="form-group">
+                        <label for="dataset-id">Enter Dataset id</label>
+                        <textarea class="form-control" id="dataset-id" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="batch-size">Enter batch size</label>
+                        <textarea class="form-control" id="batch-size" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="price-per-batch">Enter price per batch</label>
+                        <textarea class="form-control" id="price-per-batch" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataset-type">Choose type of Dataset</label>
+                        <select class="form-control" id="dataset-type">
+                            <option>Text</option>
+                            <option>Image</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exp-description">Experiment Instructions</label>
+                        <textarea class="form-control" id="exp-description" rows="3"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-lg">Create Experiment</button>
+                </form>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+</body>
+
+</html>
