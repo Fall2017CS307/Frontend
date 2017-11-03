@@ -76,4 +76,4 @@ if __name__ == '__main__':
     print urllib2.urlopen(SERVER_ADDRESS+"api/getUser/1").read()
 
     app.config["SECRET_KEY"] = "ITSASECRET"
-    app.run(port=4999,debug=True)
+    app.run(port=4999,debug=True,host="0.0.0.0")
