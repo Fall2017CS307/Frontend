@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome</title>
+    <title>View Experiments</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -55,9 +55,29 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <h1>Welcome!</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                
+                <h1>Experiments</h1>
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Id</th>
+                        <th>Price</th>
+                        <th>Pause/Resume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for i in  value['experiments']%}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ i['description'] }}</td>
+                    <td>{{ i['id'] }}</td>
+                    <td>{{ i['price'] }}</td>
+                    <td><button type="button" class="btn btn-default">Pause</button></td>
+                </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

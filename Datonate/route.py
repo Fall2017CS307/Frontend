@@ -3,6 +3,8 @@ from flask import Flask, Response, request, render_template, url_for, redirect
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 import urllib2
 import json
+import requests
+
 SERVER_ADDRESS = "http://datonate.com:5000/"
 
 app = Flask(__name__)
@@ -68,6 +70,26 @@ def index():
 def upload():
     return render_template("upload.html", value=current_user.id)
 
+@app.route("/viewdataset")
+@login_required
+def viewdataset():
+    jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + str(current_user.id) + "/datasets").read()
+    if(len(jsonString)<=0):
+        return None
+    jsonArr = json.loads(jsonString)
+    if(jsonArr['status'] == 200):
+        return render_template("viewdataset.html", value=jsonArr)
+
+@app.route("/viewexp")
+@login_required
+def viewexp():
+    jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "getExperiments/" + str(current_user.id)).read()
+    if(len(jsonString)<=0):
+        return None
+    jsonArr = json.loads(jsonString)
+    if(jsonArr['status'] == 200):
+        return render_template("viewexp.html", value=jsonArr)
+
 @app.route("/create")
 @login_required
 def create():
@@ -76,4 +98,4 @@ if __name__ == '__main__':
     print urllib2.urlopen(SERVER_ADDRESS+"api/getUser/1").read()
 
     app.config["SECRET_KEY"] = "ITSASECRET"
-    app.run(port=4999,debug=True,host="0.0.0.0")
+    app.run(port=5000,debug=True,host="0.0.0.0")

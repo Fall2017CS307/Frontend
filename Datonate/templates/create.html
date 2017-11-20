@@ -34,20 +34,20 @@
                     <a href="/upload">Upload Datasets</a>
                 </li>
                 <li>
-                    <a href="viewdataset.html">View Datasets</a>
+                    <a href="/viewdataset">View Datasets</a>
                 </li>
                 <li>
                     <a href="/create">Create Experiments</a>
                 </li>
                 <li>
-                    <a href="viewexp.html">View Experiments</a>
+                    <a href="/viewexp">View Experiments</a>
                 </li>
                 <li>
                     <a href="settings.html">Settings</a>
                 </li>
                 <li>
                     <a href="/logout">logout</a>
-            </li>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -88,6 +88,16 @@
                     <div class="form-group">
                         <label for="exp-description">Experiment Instructions</label>
                         <textarea class="form-control" id="exp-description" rows="3" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="example-date-input" class="col-2 col-form-label">Set Deadline</label>
+                        <div class="col-10">
+                            <input class="form-control" type="date" value="2017-11-19" id="deadline">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="batch-size">Set Experiment Reminder(Hours before deadline)</label>
+                        <textarea class="form-control" id="reminder" name="expreminder" rows="1"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="dataset-type">Geographical Location</label>
