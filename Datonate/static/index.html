@@ -66,7 +66,8 @@
                   <input type="password" class="form-control" id="pwd-login" placeholder="Enter password">
                 </div>
                 <div class="modal-btn">
-                  <button type="submit" id="submit-login" class="btn btn-primary">Log In</button>
+                  <button type="submit" id="submit-login" class="btn btn-primary">Log In
+                  </button>
                   <a class="btn btn-block btn-social btn-facebook">
                     <span class="fa fa-facebook"></span> Facebook
                   </a>
@@ -136,7 +137,7 @@
                 <input type="password" class="form-control" id="Passwordconfirm" name="passwordconfirm" placeholder="Confirm Password">
               </div>
             </div>
-            <button type="submit" class="btn btn-primary" style="padding: 10px 30px;">Submit</button>
+            <button type="submit" id="submit-registration" class="btn btn-primary" style="padding: 10px 30px;">Submit</button>
           </form>
         </div>  
       </div>
@@ -186,22 +187,22 @@
 <script type="text/javascript" src="js/jquery.contact.js"></script>
 
 <script>
-$( document ).ready(function() {
-  $("#form-login").submit(function(){
-  var emailID = $("#email-login").val()
-  var pwd = $("#pwd-login").val()
-  var baseUrl = "http://65db2b5d.ngrok.io"
-  var endpoint = "/api/login"
+  $( document ).ready(function() {
+    $("#form-login").submit(function(){
+      var emailID = $("#email-login").val()
+      var pwd = $("#pwd-login").val()
+      var baseUrl = "http://65db2b5d.ngrok.io"
+      var endpoint = "/api/login"
 
-  var finalURL = baseUrl+endpoint
-  $.get(finalURL, { email: emailID, password:pwd }).done(function(data){
-    if(data['status'] == 200){
-      alert("login successfull");
-    }
+      var finalURL = baseUrl+endpoint
+      $.get(finalURL, { email: emailID, password:pwd }).done(function(data){
+        if(data['status'] == 200){
+          alert("login successfull");
+        }
+      });
+    });
+
   });
-});
-
-});
 
 
 </script>

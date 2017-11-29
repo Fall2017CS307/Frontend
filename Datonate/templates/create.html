@@ -56,7 +56,7 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <h1>Create Experiments</h1>
-                <form action = "http://datonate.com:5000/api/{{ value }}/create">
+                <form action = "create">
                     <div class="form-group">
                         <label for="dataset-id">Enter Dataset id</label>
                         <textarea class="form-control" id="dataset-id" name="dataset_id" rows="1"></textarea>
@@ -356,7 +356,7 @@
                     </div>
                     <div class="form-group">
                         <label for="dataset-type">Gender of participant</label>
-                        <select class="form-control" id="dataset-type">
+                        <select class="form-control" id="dataset-type" name="gender">
                             <option value="">No preference</option>    
                             <option value="0">Male</option>
                             <option value="1">Female</option>
@@ -373,6 +373,17 @@
                         </select>
                     </div>
                     <input type="submit" class="btn btn-primary btn-lg" value="Create Experiment">
+                     {% if succ is not none %}
+                     {{succ}}
+                     <p>Succefull!</p>
+                     {% endif %}
+                     {% if fail is not none %}
+                     <p>Unsuccessfull!</p>
+                     {% for i in  fail %}
+                     {{ i['errors'] }}
+                     {% endfor %}
+                     {% endif %}
+
                 </form>
             </div>
         </div>
