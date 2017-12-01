@@ -109,14 +109,25 @@ def create():
               'batchSize' : argArray.get("batchSize"),
               'price' : argArray.get("price") ,
               'description' : argArray.get("description"),
-              'gender' :  argArray.get("gender") }
+              'gender' :  argArray.get("gender"),
+			  'title' : argArray.get('title'),
+				'maxTime' : argArray.get('maxTime'),
+				'allocateTime': argArray.get('allocateTime'),
+				'notifTime' : argArray.get('notifTime'),
+				'datasetType' : argArray.get('datasetType'),
+				'skill' : argArray.get('skill'),
+				'country' : argArray.get('country')
+			 }
+
     data=urllib.urlencode(values)
+    print str(data)
     data=data.encode('utf-8')
     response=urllib.urlopen(SERVER_ADDRESS+"api/" + str(current_user.id) + "/create",data)
     jsonString=response.read()
     #data = data.encode('ascii') # data should be bytes
     #jsonString = urllib2.urlopen(SERVER_ADDRESS+"api/" + str(current_user.id) + "/create", data).read()
     #jsonString = urllib.request.urlopen(req).read()
+    print jsonString
     jsonArr = json.loads(jsonString)
     if(jsonArr['status'] == 200):
         return render_template("create.html", value = str(current_user.id), succ = jsonArr)
