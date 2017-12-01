@@ -94,6 +94,12 @@ def viewexp():
     if(jsonArr['status'] == 200):
         return render_template("viewexp.html", value=jsonArr)
 
+@app.route("/viewexp/<int:experiment_id>",methods = ['GET', 'POST'])
+@login_required
+def viewexp1(experiment_id):
+    jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "toggleExperiment/" + str(experiment_id)).read()
+    return redirect(url_for("viewexp"))
+
 @app.route("/create",methods = ['GET', 'POST'])
 @login_required
 def create():
