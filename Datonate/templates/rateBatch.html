@@ -8,8 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>View Experiments</title>
-
+    <title>View Datasets</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -56,40 +55,41 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <h2>Experiments</h2>
+                <h2>Batches</h2>
                 <br>
-                <table class="table table-striped">
+                <table class="table table-striped" style="table-layout: fixed;">
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Description</th>
-                        <th>Price per batch</th>
-                        <th>Progress</th>
-                        <th width="10%">Pause/Resume</th>
-                        <th>Rate Batch</th>
+                        <th>Batch id</th>
+                        <th>Rate</th>
+                        <th>Submit</th>
                     </tr>
                 </thead>
                 <tbody>
-                  {% for i in  value['experiments']%}
+                  {% for i in data['batches'] %}
                   <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ i['description'] }}</td>
-                    <td>{{ i['price'] }}</td>
+                    <td>{{ i }}</td>
                     <td>
-                        <div class="progress" >
-                          <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-                          aria-valuenow="{{i['completed'] / i['total'] * 100}}" aria-valuemin="0" aria-valuemax="100" 
-                          style="width:{{i['completed'] / i['total'] * 100}}%;">
-                          <p style="color: black;">{{i['completed']}}/{{i['total']}}</p>
-                      </div>
-                  </div>
-              </td>
-              <td><button type="button" class="btn btn-default">Pause</button></td>
-              <td><a href="/rateBatch/{{ i['experiment_id'] }}"><button type="button" class="btn btn-default">Rate</button></a></td>
-          </tr>
-          {% endfor %}
-      </tbody>
-  </table>
+                    <form action = "{{ id }}" method="POST">
+                        <div class="form-group rating">
+                        <select class="form-control" class="input-small" id="rating" name="rating">
+                            <option value="1">1</option>    
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="batch_id" value="{{ i }}">    
+                </td>
+                <td><input type="submit" class="btn btn-default"></input></td>
+            </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 </div>
 <!-- /#page-content-wrapper -->

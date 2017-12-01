@@ -94,17 +94,22 @@ def viewexp():
     if(jsonArr['status'] == 200):
         return render_template("viewexp.html", value=jsonArr)
 
-@app.route("/create")
+@app.route("/create",methods = ['GET', 'POST'])
 @login_required
 def create():
     if request.method == "GET":
-        argArray = request.args
-    elif request.method  == "POST":
-        if(len(request.form) > 0):
-            argArray = request.form
-        else:
-            print request.get_data()
-            argArray = json.loads(request.data)
+        jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + str(current_user.id) + "/datasets").read()
+        if(len(jsonString)<=0):
+            return None
+        jsonArr = json.loads(jsonString)
+        if(jsonArr['status'] == 200):
+            return render_template("create.html", value = str(current_user.id), data = jsonArr)
+    if(len(request.form) > 0):
+        argArray = request.form
+    else:
+        return "ee"
+        print request.get_data()
+        argArray = json.loads(request.data)
     values = {'dataset_id' : argArray.get("dataset_id"),
               'batchSize' : argArray.get("batchSize"),
               'price' : argArray.get("price") ,
@@ -133,6 +138,40 @@ def create():
         return render_template("create.html", value = str(current_user.id), succ = jsonArr)
     else:
         return render_template("create.html", value = str(current_user.id), fail = jsonArr)
+
+@app.route("/rateBatch/<int:experiment_id>",methods = ['GET', 'POST'])
+@login_required
+def rateBatch(experiment_id):
+    if request.method == "GET":
+        jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "getBatchToRate/" + str(experiment_id)).read()
+        if(len(jsonString)<=0):
+            return None
+        jsonArr = json.loads(jsonString)
+        if(jsonArr['status'] == 200):
+            return render_template("rateBatch.html", data = jsonArr, id = str(experiment_id))
+    if(len(request.form) > 0):
+        argArray = request.form
+    else:
+        print request.get_data()
+        argArray = json.loads(request.data)
+    values = {
+        'batch_id': argArray.get('batch_id'),
+        'rating': argArray.get('rating')
+    }
+    data=urllib.urlencode(values)
+    print str(data)
+    data=data.encode('utf-8')
+    response=urllib.urlopen(SERVER_ADDRESS+"api/" + values['batch_id'] + "/rateBatch/" +  values['batch_id'],data)
+    jsonString=response.read()
+    print jsonString
+    jsonArr = json.loads(jsonString)
+    if(jsonArr['status'] == 200):
+        jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "getBatchToRate/" + str(experiment_id)).read()
+        jsonArr = json.loads(jsonString)
+        if(jsonArr['status'] == 200):
+            return render_template("rateBatch.html", data = jsonArr, id = str(experiment_id))
+    else:
+        return "ee"
 
 if __name__ == '__main__':
     app.config["SECRET_KEY"] = "ITSASECRET"

@@ -3,6 +3,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.rating {
+width: 35px;
+}
+
 form {
   width: 600px;
 }

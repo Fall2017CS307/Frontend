@@ -63,19 +63,24 @@
                      <p style="color: green;">Succefull!</p>
                      {% endif %}
                      {% if fail  %}
-                     <p style="color: red;">Unsuccessfull!</p>
-                     {% for i in  fail %}
-                     {{ i['errors'] }}
+                     <p style="color: red;">
+                     {% for i in  fail['errors'] %}
+                     {{ i }}
                      {% endfor %}
                      {% endif %}
-                <form action = "create">
+                    </p>
+                <form action = "create" method="POST">
                     <div class="form-group">
                         <label for="title-exp">Enter Title of Experiment</label>
                         <textarea class="form-control" id="exp-title" name="title" rows="1"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="dataset-id">Enter Dataset id</label>
-                        <textarea class="form-control" id="dataset-id" name="dataset_id" rows="1"></textarea>
+                        <label for="dataset-select">Select Dataset</label>
+                        <select class="form-control" id="dataset-select" name="dataset-select">
+                            {% for i in  data['datasets'] %}
+                            <option value="{{i['id']}}">{{i['resource_name']}}</option>   
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="batch-size">Enter batch size</label>
