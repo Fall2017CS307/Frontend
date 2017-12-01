@@ -8,7 +8,7 @@ import json
 import requests
 from urlparse import urlparse
 
-SERVER_ADDRESS = "http://127.0.0.1:5000/"
+SERVER_ADDRESS = "http://datonate.com:5000/"
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -154,7 +154,7 @@ def rateBatch(experiment_id):
             return None
         jsonArr = json.loads(jsonString)
         if(jsonArr['status'] == 200):
-            return render_template("rateBatch.html", data = jsonArr, id = str(experiment_id))
+            return render_template("rateBatch.html", data = jsonArr, id = str(experiment_id), flag = 0)
     if(len(request.form) > 0):
         argArray = request.form
     else:
@@ -178,6 +178,43 @@ def rateBatch(experiment_id):
             return render_template("rateBatch.html", data = jsonArr, id = str(experiment_id))
     else:
         return "ee"
+
+@app.route("/updateExp/<int:experiment_id>",methods = ['GET', 'POST'])
+@login_required
+def updateExp(experiment_id):
+    if request.method == "GET":
+        jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "getExperimentDetails/" + str(experiment_id)).read()
+        if(len(jsonString)<=0):
+            return None
+        jsonArr = json.loads(jsonString)
+        if(jsonArr['status'] == 200):
+            return render_template("updateExp.html", data = jsonArr, id = str(experiment_id))
+    if(len(request.form) > 0):
+        argArray = request.form
+    else:
+        print request.get_data()
+        argArray = json.loads(request.data)
+    values = {
+        'allocateTime': argArray.get('allocateTime'),
+        'description': argArray.get('description'),
+        'maxTime': argArray.get('maxTime'),
+        'notifTime': argArray.get('notifTime')
+    }
+    print "jj"+argArray.get('allocateTime') + "h\n"
+    data=urllib.urlencode(values)
+    #print str(data)
+    data=data.encode('utf-8')
+    response=urllib.urlopen(SERVER_ADDRESS+"api/" + "updateExperiment/" + str(experiment_id),data)
+    jsonString=response.read()
+    print jsonString
+    jsonArr = json.loads(jsonString)
+    if(jsonArr['status'] == 200):
+        jsonString2  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "getExperimentDetails/" + str(experiment_id)).read()
+        jsonArr = json.loads(jsonString2)
+        if(jsonArr['status'] == 200):
+            return render_template("updateExp.html", data = jsonArr, id = str(experiment_id), flag = 1)
+    else:
+        return render_template("updateExp.html", data = jsonArr, id = str(experiment_id), flag = 2)
 
 if __name__ == '__main__':
     app.config["SECRET_KEY"] = "ITSASECRET"
