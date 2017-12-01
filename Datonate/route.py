@@ -8,7 +8,7 @@ import json
 import requests
 from urlparse import urlparse
 
-SERVER_ADDRESS = "http://datonate.com:5000/"
+SERVER_ADDRESS = "http://127.0.0.1:5000/"
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -135,9 +135,15 @@ def create():
     print jsonString
     jsonArr = json.loads(jsonString)
     if(jsonArr['status'] == 200):
-        return render_template("create.html", value = str(current_user.id), succ = jsonArr)
+        jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + str(current_user.id) + "/datasets").read()
+        jsonArr2 = json.loads(jsonString)
+        return render_template("create.html", value = str(current_user.id), succ = jsonArr, data=jsonArr2)
     else:
-        return render_template("create.html", value = str(current_user.id), fail = jsonArr)
+        jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + str(current_user.id) + "/datasets").read()
+        jsonArr2 = json.loads(jsonString)
+        if(jsonArr2['status'] == 200):
+            return render_template("create.html", value = str(current_user.id), data = jsonArr2, fail=jsonArr)
+        return render_template("create.html", value = str(current_user.id), fail = jsonArr, data={})
 
 @app.route("/rateBatch/<int:experiment_id>",methods = ['GET', 'POST'])
 @login_required
