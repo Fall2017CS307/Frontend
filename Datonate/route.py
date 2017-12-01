@@ -63,7 +63,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return "logout successfull"
+    return redirect(url_for("index"))
 @app.route("/")
 @login_required
 def index():
@@ -87,7 +87,7 @@ def viewdataset():
 @app.route("/viewexp")
 @login_required
 def viewexp():
-    jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "getExperiments/" + str(current_user.id)).read()
+    jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "getExperimentProgress/" + str(current_user.id)).read()
     if(len(jsonString)<=0):
         return None
     jsonArr = json.loads(jsonString)
@@ -124,7 +124,5 @@ def create():
         return render_template("create.html", value = str(current_user.id), fail = jsonArr)
 
 if __name__ == '__main__':
-    print urllib2.urlopen(SERVER_ADDRESS+"api/getUser/1").read()
-
     app.config["SECRET_KEY"] = "ITSASECRET"
     app.run(port=5000,debug=True,host="0.0.0.0")

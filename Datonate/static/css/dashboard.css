@@ -1,18 +1,25 @@
 body {
   overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
 }
 
 form {
   width: 600px;
 }
 
+.container-fluid {
+  background-color: #f3f3f387;
+  border-style: solid;
+  border-width: thin;
+  border-color: #ecebeb;
+}
 #sidebar-wrapper {
   
   position: fixed;
   height: 100%;
   width: 250px;
   overflow-y: auto;
-  background: #000;
+  background: #0d253a;
 }
 
 
@@ -41,7 +48,8 @@ form {
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  padding: 10px;
+  color: #ffffff;
 }
 
 .sidebar-nav li a:hover {
@@ -58,10 +66,11 @@ form {
   height: 65px;
   font-size: 20px;
   line-height: 60px;
+
 }
 
 .sidebar-nav>.sidebar-brand a {
-  color: #999999;
+  color: #ffffff;
 }
 
 .sidebar-nav>.sidebar-brand a:hover {
