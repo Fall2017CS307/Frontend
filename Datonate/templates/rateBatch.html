@@ -36,6 +36,9 @@
                 <li>
                     <a href="/viewdataset"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> View Datasets</a>
                 </li>
+                 <li>
+                    <a href="/publicdatasets"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Public Datasets</a>
+                </li>
                 <li>
                     <a href="/create"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create Experiments</a>
                 </li>
@@ -62,6 +65,7 @@
                       <tr>
                         <th>#</th>
                         <th>Batch id</th>
+                        <th>Link</th>
                         <th>Rate</th>
                         <th>Submit</th>
                     </tr>
@@ -70,7 +74,8 @@
                   {% for i in data['batches'] %}
                   <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ i }}</td>
+                    <td>{{ i['id'] }}</td>
+                    <td>{{ i['link'] }}</td>
                     <td>
                     <form action = "{{ id }}" method="POST">
                         <div class="form-group rating">

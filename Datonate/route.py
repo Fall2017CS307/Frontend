@@ -84,6 +84,28 @@ def viewdataset():
     if(jsonArr['status'] == 200):
         return render_template("viewdataset.html", value=jsonArr)
 
+@app.route("/viewdataset/<int:dataset_id>")
+@login_required
+def viewdataset1(dataset_id):
+    jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + str(current_user.id) + "/toggleDataset/" + str(dataset_id)).read()
+    return redirect(url_for("viewdataset"))
+
+@app.route("/publicdatasets")
+@login_required
+def publicdatasets():
+    jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + "datasets" + "/public").read()
+    if(len(jsonString)<=0):
+        return None
+    jsonArr = json.loads(jsonString)
+    if(jsonArr['status'] == 200):
+        return render_template("publicdatasets.html", value=jsonArr)
+
+@app.route("/publicdatasets/<int:dataset_id>")
+@login_required
+def publicdatasets1(dataset_id):
+    jsonString  = urllib2.urlopen(SERVER_ADDRESS+"api/" + str(current_user.id) + "/dataset" + "/copy/" + str(dataset_id)).read()
+    return redirect(url_for("publicdatasets"))
+
 @app.route("/viewexp")
 @login_required
 def viewexp():

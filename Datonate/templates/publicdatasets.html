@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>View Datasets</title>
+    <title>Public Datasets</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -58,16 +58,15 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <h2>Datasets</h2>
+                <h2>Public Datasets</h2>
                 <br>
                 <table class="table table-striped" style="table-layout: fixed;">
                     <thead>
                       <tr>
-                        <th width="4%">#</th>
+                        <th width="2%">#</th>
                         <th width="50%">Resource Name</th>
-                        <th>Title</th>
-                        <th>Public/Private</th>
-                        <th>Toggle</th>
+                        <th >Title</th>
+                        <th>Copy Dataset</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,8 +75,7 @@
                     <td>{{ loop.index }}</td>
                     <td>{{ i['resource_name'] }}</td>
                     <td>{{ i['title'] }}</td>
-                    <td>{{ i['status'] }}</td>
-                    <td><a href="/viewdataset/{{ i['id'] }}"><button type="button" class="btn btn-default">Toggle</button></a></td>
+                    <td><a href="/publicdatasets/{{ i['id']}}"><button type="button" class="btn btn-default">Copy</button></a></td>
                 </tr>
                     {% endfor %}
             </tbody>
