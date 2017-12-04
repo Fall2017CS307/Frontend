@@ -244,6 +244,11 @@ def updateExp(experiment_id):
     else:
         return render_template("updateExp.html", data = jsonArr, id = str(experiment_id), flag = 2)
 
+@app.route("/requestPayment", methods = ['GET', 'POST'])
+@login_required
+def requestPayment():
+    return render_template("payout.html")
+
 if __name__ == '__main__':
     app.config["SECRET_KEY"] = "ITSASECRET"
     app.run(port=4999,debug=True,host="0.0.0.0")
