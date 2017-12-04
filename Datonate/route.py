@@ -252,7 +252,7 @@ def updateExp(experiment_id):
 @app.route("/paycheck", methods = ['GET', 'POST'])
 @login_required
 def paycheck():
-    return render_template("paycheck.html", pub_key = pub_key)
+    return render_template("payment.html", flag = 0, pub_key = pub_key)
 
 @app.route("/pay", methods = ['GET', 'POST'])
 @login_required
@@ -263,8 +263,9 @@ def pay():
     charge = stripe.Charge.create(customer=customer.id,amount=99,currency='usd',description='The Product')
     if(charge.paid):
         response=urllib.urlopen(SERVER_ADDRESS+'/api/getMoney/' + str(current_user.id) + '/' + str(99))
-        return render_template("dashboard.html")
-        
+        return render_template("payment.html", flag = 1)
+    else:
+        return render_template("payment.html", flag = 2)
 
 if __name__ == '__main__':
     app.config["SECRET_KEY"] = "ITSASECRET"

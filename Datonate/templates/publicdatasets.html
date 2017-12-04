@@ -46,6 +46,9 @@
                     <a href="/viewexp"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> View Experiments</a>
                 </li>
                 <li>
+                    <a href="/paycheck"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Manage Money</a>
+                </li>
+                <li>
                     <a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a>
                 </li>
                 <li>
@@ -63,8 +66,7 @@
                 <table class="table table-striped" style="table-layout: fixed;">
                     <thead>
                       <tr>
-                        <th width="2%">#</th>
-                        <th width="50%">Resource Name</th>
+                        <th>#</th>
                         <th >Title</th>
                         <th>Copy Dataset</th>
                     </tr>
@@ -73,7 +75,6 @@
                   {% for i in  value['datasets']%}
                   <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ i['resource_name'] }}</td>
                     <td>{{ i['title'] }}</td>
                     <td><a href="/publicdatasets/{{ i['id']}}"><button type="button" class="btn btn-default">Copy</button></a></td>
                 </tr>

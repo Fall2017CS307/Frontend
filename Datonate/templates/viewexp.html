@@ -47,6 +47,9 @@
                     <a href="/viewexp"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> View Experiments</a>
                 </li>
                 <li>
+                    <a href="/paycheck"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Manage Money</a>
+                </li>
+                <li>
                     <a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a>
                 </li>
                 <li>
@@ -72,6 +75,7 @@
                         <th>Resume/Pause</th>
                         <th>Rate Batch</th>
                         <th>Update Experiment</th>
+                        <th>Link</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,6 +98,7 @@
               <td><a href="/viewexp/{{ i['experiment_id'] }}"><button type="button" class="btn btn-default">Toggle</button></a></td>
               <td><a href="/rateBatch/{{ i['experiment_id'] }}"><button type="button" class="btn btn-default">Rate</button></a></td>
               <td><a href="/updateExp/{{ i['experiment_id'] }}"><button type="button" class="btn btn-default">Update</button></a></td>
+              <td><a href="{{i['link']}}">Download</a></td>
           </tr>
           {% endfor %}
       </tbody>

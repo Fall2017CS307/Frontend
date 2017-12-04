@@ -47,6 +47,9 @@
                     <a href="/viewexp"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> View Experiments</a>
                 </li>
                 <li>
+                    <a href="/paycheck"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Manage Money</a>
+                </li>
+                <li>
                     <a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a>
                 </li>
                 <li>
@@ -81,7 +84,7 @@
                         <label for="dataset-select">Select Dataset</label>
                         <select class="form-control" id="dataset-select" name="dataset_id">
                             {% for i in  data['datasets'] %}
-                            <option value="{{i['id']}}">{{i['resource_name']}}</option>
+                            <option value="{{i['id']}}">{{i['title']}}</option>
                             {% endfor %}
                         </select>
                     </div>
