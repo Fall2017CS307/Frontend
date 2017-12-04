@@ -7,12 +7,15 @@ import urllib
 import json
 import requests
 from urlparse import urlparse
+import stripe
 
 SERVER_ADDRESS = "http://datonate.com:5000/"
 
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+pub_key = 'pk_test_fOAnrRLEB5cDZMCipafCb71E'
 
 login_manager.login_view = 'login'
 
@@ -244,10 +247,34 @@ def updateExp(experiment_id):
     else:
         return render_template("updateExp.html", data = jsonArr, id = str(experiment_id), flag = 2)
 
-@app.route("/requestPayment", methods = ['GET', 'POST'])
+@app.route("/paycheck", methods = ['GET', 'POST'])
 @login_required
-def requestPayment():
-    return render_template("payout.html")
+def pay():
+    return render_template("paycheck.html", pub_key = pub_key)
+
+@app.route("/pay", methods = ['GET', 'POST'])
+@login_required
+def pay():
+
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
+
+        charge = stripe.Charge.create(
+            customer=customer.id,
+            amount=99,
+            currency='usd',
+            description='The Product'
+
+        )
+    if(charge.paid):
+        response=urllib.urlopen(SERVER_ADDRESS+'/api/getMoney/' + str(current_user.id) + '/' + str(99))
+
+        if(response == 200):
+            return render_template("dashboard.html")
+        else
+            return 'Failure in transferring money'
+
+    else:
+        return 'Failure in transferring money'
 
 if __name__ == '__main__':
     app.config["SECRET_KEY"] = "ITSASECRET"
