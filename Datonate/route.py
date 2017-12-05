@@ -16,6 +16,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 pub_key = 'pk_test_fOAnrRLEB5cDZMCipafCb71E'
+secret_key = 'sk_test_I54z4p3XASvKZAfuwhmDPvlN'
+stripe.api_key = secret_key
 
 login_manager.login_view = 'login'
 
@@ -249,7 +251,7 @@ def updateExp(experiment_id):
 
 @app.route("/paycheck", methods = ['GET', 'POST'])
 @login_required
-def pay():
+def paycheck():
     return render_template("paycheck.html", pub_key = pub_key)
 
 @app.route("/pay", methods = ['GET', 'POST'])
@@ -258,23 +260,11 @@ def pay():
 
     customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
 
-        charge = stripe.Charge.create(
-            customer=customer.id,
-            amount=99,
-            currency='usd',
-            description='The Product'
-
-        )
+    charge = stripe.Charge.create(customer=customer.id,amount=99,currency='usd',description='The Product')
     if(charge.paid):
         response=urllib.urlopen(SERVER_ADDRESS+'/api/getMoney/' + str(current_user.id) + '/' + str(99))
-
-        if(response == 200):
-            return render_template("dashboard.html")
-        else
-            return 'Failure in transferring money'
-
-    else:
-        return 'Failure in transferring money'
+        return render_template("dashboard.html")
+        
 
 if __name__ == '__main__':
     app.config["SECRET_KEY"] = "ITSASECRET"
